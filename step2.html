@@ -1,0 +1,46 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step2</title>
+  </head>
+  <body>
+    <h1>
+        BANKID testing [step2]
+    </h1>
+
+    <p>
+        <a href="./index.html">relative link to index</a>
+    </p>
+
+    <p>
+        <a href="./autostart.html">relative link to autostart</a>
+    </p>
+
+    <p>
+        <a href="./autostart_simple.html">relative link to autostart_simple</a>
+    </p>
+
+    <p>
+        <a id="rewrite" href="#">rewrite</a>
+    </p>
+
+    <p>
+        <a id="normal" href="intent://?autostarttoken=0a47a844-2c02-4b80-adaf-725940037d6b&redirect=null#Intent;scheme=bankid;package=com.bankid.bus;end">normal</a>
+    </p>
+    
+    <script>
+        var normalEl = document.querySelector('#normal'),
+            rewriteEl = document.querySelector('#rewrite'),
+            rewriteFunc = function (e) {
+                var url = normalEl.href;
+                console.log('about to set document.location to [' + url + ']');
+                document.location = url;
+                return false;
+            };
+
+        rewriteEl.addEventListener('click', rewriteFunc);
+    </script>
+  </body>
+</html>

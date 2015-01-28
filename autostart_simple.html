@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>autostart_simple</title>
+  </head>
+  <body>
+    <h1>
+        BANKID testing [autostart_simple]
+    </h1>
+
+    <p>
+        <a href="./index.html">relative link to index</a>
+    </p>
+
+    <p>
+        <a href="./step2.html">relative link to step2</a>
+    </p>
+
+    <script>
+        var url = "intent://?autostarttoken=0a47a844-2c02-4b80-adaf-725940037d6b&redirect=null#Intent;scheme=bankid;package=com.bankid.bus;end",
+            timeout = 1000;
+
+        // Chrome will load the previous page in history regardless of timeout it seems
+        console.log('about to set document.location to [' + url + '] - after a timeout [' + timeout + ']');
+        setTimeout(function() {
+            document.location = url;
+        }, timeout);
+    </script>
+  </body>
+</html>

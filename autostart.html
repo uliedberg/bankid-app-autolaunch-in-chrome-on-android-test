@@ -1,0 +1,87 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>autostart</title>
+  </head>
+  <body>
+    <h1>
+        BANKID testing [autostart]
+    </h1>
+
+    <p>
+        <a href="./index.html">relative link to index</a>
+    </p>
+
+    <p>
+        <a href="./step2.html">relative link to step2</a>
+    </p>
+
+    <script>
+      // copy n pasted from http://blog.helishopter.com/files/bankid/index.html
+
+      autoLaunchBankID('0a47a844-2c02-4b80-adaf-725940037d6b');
+        
+      function autoLaunchBankID(autostarttoken) {
+        var custom = 'bankid:///?autostarttoken='+autostarttoken+'&redirect=null',
+            alt = 'alt.html',
+            g_intent = 'intent://?autostarttoken='+autostarttoken+'&redirect=null#Intent;scheme=bankid;package=com.bankid.bus;end',
+            timer,
+            heartbeat,
+            iframe_timer;
+            
+        activate();
+     
+        function activate() {
+            heartbeat = setInterval(intervalHeartbeat, 200);
+            if (navigator.userAgent.match(/Chrome/)) {
+                useIntent();
+            } else if (navigator.userAgent.match(/Firefox/)) {
+                tryWebkitApproach();
+                iframe_timer = setTimeout(function () {
+                    tryIframeApproach();
+                }, 1500);
+            } else {
+                tryIframeApproach();
+            }
+        }
+        
+        function clearTimers() {
+            clearTimeout(timer);
+            clearTimeout(heartbeat);
+            clearTimeout(iframe_timer);
+        }
+     
+        function intervalHeartbeat() {
+            if (document.webkitHidden || document.hidden) {
+                clearTimers();
+            }
+        }
+     
+        function tryIframeApproach() {
+            var iframe = document.createElement("iframe");
+            iframe.style.border = "none";
+            iframe.style.width = "1px";
+            iframe.style.height = "1px";
+            iframe.onload = function () {
+                document.location = alt;
+            };
+            iframe.src = custom;
+            document.body.appendChild(iframe);
+        }
+     
+        function tryWebkitApproach() {
+            document.location = custom;
+            timer = setTimeout(function () {
+                document.location = alt;
+            }, 2500);
+        }
+     
+        function useIntent() {
+            document.location = g_intent;
+        }
+      }
+    </script>
+  </body>
+</html>
