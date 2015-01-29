@@ -35,8 +35,8 @@
             rewriteEl = document.querySelector('#rewrite'),
             rewriteFunc = function (e) {
                 var url = normalEl.href;
-                console.log('about to set document.location to [' + url + ']');
-                document.location = url;
+                console.log('about to set window.location to [' + url + ']');
+                window.location = url;
                 return false;
             };
 

@@ -22,9 +22,9 @@
             timeout = 1000;
 
         // Chrome will load the previous page in history regardless of timeout it seems
-        console.log('about to set document.location to [' + url + '] - after a timeout [' + timeout + ']');
+        console.log('about to set window.location to [' + url + '] - after a timeout [' + timeout + ']');
         setTimeout(function() {
-            document.location = url;
+            window.location = url;
         }, timeout);
     </script>
   </body>

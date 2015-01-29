@@ -65,21 +65,21 @@
             iframe.style.width = "1px";
             iframe.style.height = "1px";
             iframe.onload = function () {
-                document.location = alt;
+                window.location = alt;
             };
             iframe.src = custom;
             document.body.appendChild(iframe);
         }
      
         function tryWebkitApproach() {
-            document.location = custom;
+            window.location = custom;
             timer = setTimeout(function () {
-                document.location = alt;
+                window.location = alt;
             }, 2500);
         }
      
         function useIntent() {
-            document.location = g_intent;
+            window.location = g_intent;
         }
       }
     </script>
